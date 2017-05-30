@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function module_depl_install() {
+    _module_depl_create_folder();  
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function module_depl_uninstall() {
+    _module_depl_delete_folder();  
+}
+
+/**
+ * Create deploiement folder.
+ */
+function _module_depl_create_folder(){
+  if (!is_dir(drupal_realpath('private://deploiement/'))) {
+    drupal_mkdir('private://deploiement/', 0777, true);
+  }
+  $file_install = file_save_data('','private://deploiement/install.txt');
+  $file_revert = file_save_data('','private://deploiement/revert.txt');
+}
+
+/**
+ * Delete deploiement folder.
+ */
+function _module_depl_delete_folder(){
+  $uri = 'private://deploiement/';
+  delete_files_in_folder($uri);
+  file_unmanaged_delete_recursive($uri);
+  if (is_dir($uri)) {
+    drupal_rmdir($uri);
+  }
+}
+
+/**
+ * Delete managed files in a folder and their DB records.
+ */
+function delete_files_in_folder($uri) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'file')
+    ->propertyCondition('uri', $uri.'%', 'LIKE');
+  $result = $query->execute();
+  if (isset($result['file'])) {
+    $fids = array_keys($result['file']);
+    foreach($fids as $fid) {
+      $file = file_load($fid);
+      file_delete($file);
+    }
+  }
+}

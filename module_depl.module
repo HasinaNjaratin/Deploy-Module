@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function module_depl_menu(){
+  $items = array();
+  $items['admin/config/module_depl'] = array(
+    'title' => 'Module Deploy Configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('module_depl_back_form'),
+    'file' => 'includes/module_depl.admin.inc',
+    'access arguments' => array('access content'),
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
