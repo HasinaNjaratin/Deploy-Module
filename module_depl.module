@@ -1,9 +1,14 @@
 <?php
 
 /**
+ * @file
+ * {@inheritdoc}
+ */
+
+/**
  * Implements hook_menu().
  */
-function module_depl_menu(){
+function module_depl_menu() {
   $items = array();
   $items['admin/config/module_depl'] = array(
     'title' => 'Module Deploy Configuration',

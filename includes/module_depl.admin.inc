@@ -1,5 +1,11 @@
 <?php
-include(drupal_get_path('module','module_depl').'/includes/module_depl.common.inc');
+
+/**
+ * @file
+ * {@inheritdoc}
+ */
+
+include drupal_get_path('module', 'module_depl') . '/includes/module_depl.common.inc';
 
 /**
  * Import admin form.
@@ -7,14 +13,14 @@ include(drupal_get_path('module','module_depl').'/includes/module_depl.common.in
 function module_depl_back_form($form, $form_state) {
   $type = array(
     'all' => t('All'),
-    'install' => t('Install'), 
-    'revert' => t('Revert'), 
+    'install' => t('Install'),
+    'revert' => t('Revert'),
   );
 
   $form['depl_arg'] = array(
     '#title' => t("Deploiement argument"),
     '#type' => 'select',
-    '#default_value' =>  'all',
+    '#default_value' => 'all',
     '#options' => $type,
   );
 
@@ -29,6 +35,9 @@ function module_depl_back_form($form, $form_state) {
   return $form;
 }
 
+/**
+ * {@inheritdoc}
+ */
 function module_depl_back_submit(&$form, &$form_state) {
   $arg = $form_state['values']['depl_arg'];
   module_depl_auto_deploy($arg);
