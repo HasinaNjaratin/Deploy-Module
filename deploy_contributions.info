@@ -1,6 +1,6 @@
-name = Module Deploiement	
+name = Deploy contributions	
 description = "Make easy to deploy modules and features"
-package = My Development
+package = Development
 core = 7.x
 #files[] = includes/deploy_contributions.dev.inc
 #files[] = includes/deploy_contributions.drush.inc
