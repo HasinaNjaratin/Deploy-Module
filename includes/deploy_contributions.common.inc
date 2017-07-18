@@ -8,19 +8,19 @@
 /**
  * Deploy process.
  */
-function module_depl_auto_deploy($arg = 'all') {
+function deploy_contributions_auto_deploy($arg = 'all') {
   switch ($arg) {
     case 'install':
-      module_depl_auto_install();
+      deploy_contributions_auto_install();
       break;
 
     case 'revert':
-      module_depl_auto_revert();
+      deploy_contributions_auto_revert();
       break;
 
     case 'all':
-      module_depl_auto_install();
-      module_depl_auto_revert();
+      deploy_contributions_auto_install();
+      deploy_contributions_auto_revert();
       break;
 
     default:
@@ -32,7 +32,7 @@ function module_depl_auto_deploy($arg = 'all') {
 /**
  * Install process.
  */
-function module_depl_auto_install() {
+function deploy_contributions_auto_install() {
   $listeModule = array();
   $file = new SPLFileObject(drupal_realpath('private://') . '/deploiement/install.txt');
   try {
@@ -57,7 +57,7 @@ function module_depl_auto_install() {
 /**
  * Revert process.
  */
-function module_depl_auto_revert() {
+function deploy_contributions_auto_revert() {
   $listeModule = array();
   $file = new SPLFileObject(drupal_realpath('private://') . '/deploiement/revert.txt');
   try {

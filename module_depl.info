@@ -1,9 +1,0 @@
-name = Module Deploiement	
-description = "Make easy to deploy modules and features"
-package = My Development
-core = 7.x
-#files[] = includes/module_depl.dev.inc
-#files[] = includes/module_depl.drush.inc
-#files[] = includes/module_depl.admin.inc
-#files[] = includes/module_depl.common.inc
-configure = admin/config/module_depl

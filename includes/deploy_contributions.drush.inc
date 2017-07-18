@@ -5,15 +5,15 @@
  * {@inheritdoc}
  */
 
-include drupal_get_path('module', 'module_depl') . '/includes/module_depl.common.inc';
+include drupal_get_path('module', 'deploy_contributions') . '/includes/deploy_contributions.common.inc';
 
 /**
  * Implements hook_drush_command().
  */
-function module_depl_drush_command() {
+function deploy_contributions_drush_command() {
 
   $commands['deploy'] = array(
-    'callback' => 'module_depl_drush_execute',
+    'callback' => 'deploy_contributions_drush_execute',
     'description' => 'Modules Deploy drush command',
     'aliases' => array('depl'),
     'examples' => [
@@ -27,7 +27,7 @@ function module_depl_drush_command() {
 /**
  * Drush deploy callback.
  */
-function module_depl_drush_execute() {
+function deploy_contributions_drush_execute() {
   $args = func_get_args();
-  module_depl_auto_deploy(reset($args));
+  deploy_contributions_auto_deploy(reset($args));
 }

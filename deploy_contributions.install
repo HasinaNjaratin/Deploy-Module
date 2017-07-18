@@ -8,21 +8,21 @@
 /**
  * Implements hook_install().
  */
-function module_depl_install() {
-  _module_depl_create_folder();
+function deploy_contributions_install() {
+  _deploy_contributions_create_folder();
 }
 
 /**
  * Implements hook_uninstall().
  */
-function module_depl_uninstall() {
-  _module_depl_delete_folder();
+function deploy_contributions_uninstall() {
+  _deploy_contributions_delete_folder();
 }
 
 /**
  * Create deploiement folder.
  */
-function _module_depl_create_folder() {
+function _deploy_contributions_create_folder() {
   if (!is_dir(drupal_realpath('private://deploiement/'))) {
     drupal_mkdir('private://deploiement/', 0777, TRUE);
   }
@@ -33,7 +33,7 @@ function _module_depl_create_folder() {
 /**
  * Delete deploiement folder.
  */
-function _module_depl_delete_folder() {
+function _deploy_contributions_delete_folder() {
   $uri = 'private://deploiement/';
   delete_files_in_folder($uri);
   file_unmanaged_delete_recursive($uri);

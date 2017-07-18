@@ -5,12 +5,12 @@
  * {@inheritdoc}
  */
 
-include drupal_get_path('module', 'module_depl') . '/includes/module_depl.common.inc';
+include drupal_get_path('module', 'deploy_contributions') . '/includes/deploy_contributions.common.inc';
 
 /**
  * Import admin form.
  */
-function module_depl_back_form($form, $form_state) {
+function deploy_contributions_back_form($form, $form_state) {
   $type = array(
     'all' => t('All'),
     'install' => t('Install'),
@@ -30,7 +30,7 @@ function module_depl_back_form($form, $form_state) {
   );
 
   $form['#submit'] = array(
-    'module_depl_back_submit',
+    'deploy_contributions_back_submit',
   );
   return $form;
 }
@@ -38,7 +38,7 @@ function module_depl_back_form($form, $form_state) {
 /**
  * {@inheritdoc}
  */
-function module_depl_back_submit(&$form, &$form_state) {
+function deploy_contributions_back_submit(&$form, &$form_state) {
   $arg = $form_state['values']['depl_arg'];
-  module_depl_auto_deploy($arg);
+  deploy_contributions_auto_deploy($arg);
 }
